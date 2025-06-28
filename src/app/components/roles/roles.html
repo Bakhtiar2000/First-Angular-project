@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Sr no</th>
+          <th>Role name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let role of roleList;let sl=index">
+          <td>{{sl + 1}}</td>
+          <td>{{role.role}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- <div class="row">
+  <div class="col-4">
+    <ul>
+      <li *ngFor="let item of roleList">{{item.role}}</li>
+    </ul>
+  </div>
+
+  <div class="col-4">
+    <select >
+<option *ngFor="let role of roleList" [value]="role.roleId">{{role.role}}</option>
+    </select>
+  </div>
+</div> -->
+
+<!-- 
+
+<div class="row">
+  <div class="col-3">
+    <p>{{firstName}}</p>
+    <p>{{selectedState}}</p>
+  </div>
+  <div class="col-3">
+    <p>{{version}}</p>
+  </div>
+  <div class="col-3">
+    <p>{{currentDate}}</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3">
+    <input type="text" [value]="firstName" />
+    <input type="text" [(ngModel)]="firstName" />
+  </div>
+  <div class="col-3">
+    <input [type]="inputType" />
+  </div>
+  <div class="col-3">
+    <select [(ngModel)]="selectedState">
+      <option value="DH">Dhaka</option>
+      <option value="CO">Comilla</option>
+      <option value="CTG">Chittaging</option>
+    </select>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3">
+    <div class="btn btn-success" (click)="showWelcomeAlert()">Show welcome message</div>
+    <div class="btn btn-success" (click)="showMessage('success!')">Custom Message</div>
+  </div>
+</div> 
+
+-->

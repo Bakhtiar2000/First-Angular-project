@@ -1,0 +1,17 @@
+// Objects that are going to come as a response are to be in the interface model. Like GET method's response data.
+
+export interface IRole {
+  roleId: number;
+  role: string;
+}
+
+export interface IDesignation {
+  designationId: number;
+  designation: string;
+}
+
+export interface APIResponseModel {
+  message: string;
+  result: boolean;
+  data: any;
+}

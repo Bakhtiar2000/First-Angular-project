@@ -1,0 +1,27 @@
+<div class="row">
+  @if(isLoader){
+  <div class="col-12">
+    <div class="spinner-border text-muted"></div>
+    <div class="spinner-border text-primary"></div>
+    <div class="spinner-border text-success"></div>
+    <div class="spinner-border text-info"></div>
+    <div class="spinner-border text-warning"></div>
+    <div class="spinner-border text-danger"></div>
+    <div class="spinner-border text-secondary"></div>
+    <div class="spinner-border text-dark"></div>
+    <div class="spinner-border text-light"></div>
+  </div>
+  } @else {
+  <!-- If you use @for, you do not need to import commonodule -->
+  @for (item of designationList; track $index) {
+  <div class="col-3">
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">{{item.designation}}</h5>
+        <a href="#" class="btn btn-primary">Edit</a>
+        <a href="#" class="btn btn-primary">Delete</a>
+      </div>
+    </div>
+  </div>
+  } }
+</div>
