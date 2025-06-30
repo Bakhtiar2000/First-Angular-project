@@ -10,6 +10,111 @@ import { Client } from '../model/class/client';
 })
 export class ClientService {
   constructor(private http: HttpClient) {}
+  getAllEmployees(): Observable<APIResponseModel> {
+    const mockResponse: APIResponseModel = {
+      message: '',
+      result: true,
+      data: [
+        {
+          clientProjectId: 1,
+          projectName: 'Smart Inventory System',
+          startDate: '2024-03-01',
+          expectedEndDate: '2024-10-01',
+          leadByEmpId: 101,
+          completedDate: '',
+          contactPerson: 'John Doe',
+          contactPersonContactNo: '1234567890',
+          totalEmpWorking: 5,
+          projectCost: 15000,
+          projectDetails:
+            'A full-stack inventory management system integrated with barcode scanning.',
+          contactPersonEmailId: 'john.doe@abccorp.com',
+          clientId: 1,
+        },
+        {
+          clientProjectId: 2,
+          projectName: 'AI Chatbot Support',
+          startDate: '2024-05-15',
+          expectedEndDate: '2024-11-30',
+          leadByEmpId: 104,
+          completedDate: '',
+          contactPerson: 'Jane Smith',
+          contactPersonContactNo: '0987654321',
+          totalEmpWorking: 8,
+          projectCost: 23000,
+          projectDetails:
+            'Developing an AI-based customer service chatbot using NLP.',
+          contactPersonEmailId: 'jane.smith@xyzinc.com',
+          clientId: 2,
+        },
+        {
+          clientProjectId: 3,
+          projectName: 'E-commerce Platform',
+          startDate: '2024-01-10',
+          expectedEndDate: '2024-07-10',
+          leadByEmpId: 110,
+          completedDate: '2024-07-01',
+          contactPerson: 'Alice Johnson',
+          contactPersonContactNo: '5555555555',
+          totalEmpWorking: 10,
+          projectCost: 30000,
+          projectDetails:
+            'Custom e-commerce platform with integrated payment and delivery tracking.',
+          contactPersonEmailId: 'alice.johnson@acmecorp.com',
+          clientId: 3,
+        },
+        {
+          clientProjectId: 4,
+          projectName: 'Remote Work Portal',
+          startDate: '2024-02-20',
+          expectedEndDate: '2024-09-01',
+          leadByEmpId: 108,
+          completedDate: '',
+          contactPerson: 'Bob Brown',
+          contactPersonContactNo: '4444444444',
+          totalEmpWorking: 6,
+          projectCost: 18000,
+          projectDetails:
+            'A secure portal for managing distributed teams and productivity.',
+          contactPersonEmailId: 'bob.brown@techsolutions.com',
+          clientId: 4,
+        },
+        {
+          clientProjectId: 5,
+          projectName: 'Logistics Optimization System',
+          startDate: '2024-06-01',
+          expectedEndDate: '2024-12-15',
+          leadByEmpId: 115,
+          completedDate: '',
+          contactPerson: 'Charlie White',
+          contactPersonContactNo: '3333333333',
+          totalEmpWorking: 7,
+          projectCost: 25000,
+          projectDetails:
+            'AI-driven route and delivery scheduling optimization for logistics.',
+          contactPersonEmailId: 'charlie.white@globalenterprises.com',
+          clientId: 5,
+        },
+        {
+          clientProjectId: 6,
+          projectName: 'IoT-Based Energy Monitoring',
+          startDate: '2024-04-10',
+          expectedEndDate: '2024-11-10',
+          leadByEmpId: 120,
+          completedDate: '',
+          contactPerson: 'David Green',
+          contactPersonContactNo: '2222222222',
+          totalEmpWorking: 4,
+          projectCost: 14000,
+          projectDetails:
+            'IoT solution to monitor and optimize power consumption in factories.',
+          contactPersonEmailId: 'david.green@innovatech.com',
+          clientId: 6,
+        },
+      ],
+    };
+    return of(mockResponse);
+  }
 
   getAllClients(): Observable<APIResponseModel> {
     const mockResponse: APIResponseModel = {
@@ -106,6 +211,12 @@ export class ClientService {
   addOrUpdateClient(obj: Client): Observable<APIResponseModel> {
     return this.http.post<APIResponseModel>(
       `${environment.API_URL}/AddUpdateClient`,
+      obj
+    );
+  }
+  addOrUpdateClientProject(obj: Client): Observable<APIResponseModel> {
+    return this.http.post<APIResponseModel>(
+      `${environment.API_URL}/AddUpdateClientProject`,
       obj
     );
   }

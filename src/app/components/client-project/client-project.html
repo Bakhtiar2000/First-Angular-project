@@ -1,1 +1,192 @@
-<p>client-project works!</p>
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header bg-success">Client Project List</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- @for (item of clientList; track $index) {
+                <tr>
+                  <td>{{ $index + 1 }}</td>
+                  <td>{{ item.companyName }}</td>
+                  <td>{{ item.contactPersonName }}</td>
+                  <td>{{ item.contactNo }}</td>
+                  <td>{{ item.city }}</td>
+                  <td>
+                    <button
+                      class="btn btn-primary"
+                      (click)="onEditClient(item)"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      class="btn btn-danger"
+                      (click)="onDeleteClient(item.clientId)"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                } -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header bg-success">New Client Project</div>
+      <div class="card-body">
+        <!-- Using Reactive Form -->
+        <form [formGroup]="projectForm">
+          <div class="row">
+            <div class="col-6">
+              <label for="">clientProjectId</label>
+              <input
+                type="number"
+                formControlName="clientProjectId"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-6">
+              <label for="">projectName</label>
+              <input
+                type="text"
+                formControlName="projectName"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-6">
+              <label for="">startDate</label>
+              <input
+                type="date"
+                formControlName="startDate"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-6">
+              <label for="">expectedEndDate</label>
+              <input
+                type="date"
+                formControlName="expectedEndDate"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-6">
+              <label for="">leadByEmpId</label>
+              <select formControlName="leadByEmpId" class="form-control">
+                <option disabled value="">Select Employee Id</option>
+                @for (item of employeeList; track $index) {
+                <option [value]="item.empId">
+                  {{item.empName}} - {{item.empCode}}
+                </option>
+                }
+              </select>
+            </div>
+
+            <div class="col-6">
+              <label for="">completedDate</label>
+              <input
+                type="text"
+                formControlName="completedDate"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-6">
+              <label for="">contactPerson</label>
+              <input
+                type="text"
+                formControlName="contactPerson"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-6">
+              <label for="">contactPersonContactNo</label>
+              <input
+                type="text"
+                formControlName="contactPersonContactNo"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-6">
+              <label for="">totalEmpWorking</label>
+              <input
+                type="number"
+                formControlName="totalEmpWorking"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-6">
+              <label for="">projectCost</label>
+              <input
+                type="number"
+                formControlName="projectCost"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-6">
+              <label for="">projectDetails</label>
+              <input
+                type="text"
+                formControlName="projectDetails"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-6">
+              <label for="">contactPersonEmailId</label>
+              <input
+                type="text"
+                formControlName="contactPersonEmailId"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-6">
+              <label for="">clientId</label>
+              <input
+                type="number"
+                formControlName="clientId"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </form>
+
+        <div class="row pt-2">
+          <div class="col-6">
+            <button class="btn btn-secondary">Reset</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-success" (click)="onSaveProject()">
+              Save Project
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
