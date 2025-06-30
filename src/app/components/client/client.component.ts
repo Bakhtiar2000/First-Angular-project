@@ -27,20 +27,21 @@ export class ClientComponent implements OnInit {
   }
 
   onSaveClient() {
-    debugger; // This will pause the execution in the browser's developer tools, allowing you to inspect the current state of the application.
+    // debugger; // This will pause the execution in the browser's developer tools, allowing you to inspect the current state of the application.
     this.clientService
       .addOrUpdateClient(this.clientObj)
       .subscribe((res: APIResponseModel) => {
         if (res.result) {
           alert('Client Created Successfully!');
           this.loadClient()
+          this.clientObj= new Client() // Resetting the clientObj to a new instance of Client after successful creation to clear the form.
         } else {
           alert(res.message || 'Client Creation Failed!');
         }
       });
   }
   onEditClient(client: Client) {
-    this.clientObj = { ...client }; // This will copy the properties of the client object into clientObj, allowing you to edit it.
+    this.clientObj = client  // This will copy the properties of the client object into clientObj, allowing you to edit it.
   }
   onDeleteClient(id: number) {
     if (confirm('Are you sure you want to delete this client?')) { 
