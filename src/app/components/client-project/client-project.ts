@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ClientService } from '../../services/client';
 import {
   APIResponseModel,
@@ -21,7 +21,7 @@ export class ClientProjectComponent implements OnInit {
     clientId: new FormControl(0),
     clientProjectId: new FormControl(0),
     projectCost: new FormControl(0),
-    projectName: new FormControl(''),
+    projectName: new FormControl('', [Validators.required, Validators.minLength(4)]),
     totalEmpWorking: new FormControl(0),
     contactPerson: new FormControl(''),
     startDate: new FormControl(''),
@@ -43,7 +43,8 @@ export class ClientProjectComponent implements OnInit {
   }
   onSaveProject() {
     const formValue = this.projectForm.value;
-    debugger;
+    // console.log(formValue)
+    // debugger;
     this.client
       .addOrUpdateClientProject(formValue)
       .subscribe((res: APIResponseModel) => {
