@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { APIResponseModel } from '../model/interface/role.interface';
 import { Client } from '../model/class/client';
+import { Constant } from '../constant/Constant';
 
 @Injectable({
   providedIn: 'root',
@@ -206,23 +207,28 @@ export class ClientService {
   }
 
   // getAllClients(): Observable<APIResponseModel> {
-  //   return this.http.get<APIResponseModel>(`${environment.API_URL}/getAllClients`);
+  //   return this.http.get<APIResponseModel>(`${environment.API_URL}/${Constant.API_METHOD.GET_ALL_CLIENT}`);
   // }
+
+  getAllUsers() {
+    return this.http.get('https://jsonplaceholder.typicode.com/users');
+  }
+
   addOrUpdateClient(obj: Client): Observable<APIResponseModel> {
     return this.http.post<APIResponseModel>(
-      `${environment.API_URL}/AddUpdateClient`,
+      environment.API_URL + Constant.API_METHOD.ADD_UPDATE_CLIENT,
       obj
     );
   }
   addOrUpdateClientProject(obj: Client): Observable<APIResponseModel> {
     return this.http.post<APIResponseModel>(
-      `${environment.API_URL}/AddUpdateClientProject`,
+      `${environment.API_URL}/${Constant.API_METHOD.ADD_UPDATE_CLIENT_PROJECT}`,
       obj
     );
   }
   deleteClientById(id: number): Observable<APIResponseModel> {
     return this.http.delete<APIResponseModel>(
-      `${environment.API_URL}/DeleteClientById?clientId=${id}`
+      `${environment.API_URL}/${Constant.API_METHOD.DELETE_CLIENT}?clientId=${id}`
     );
   }
 }
