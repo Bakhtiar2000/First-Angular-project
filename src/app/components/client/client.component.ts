@@ -5,11 +5,13 @@ import { ClientService } from '../../services/client';
 import { APIResponseModel } from '../../model/interface/role.interface';
 import { AsyncPipe, DatePipe, JsonPipe } from '@angular/common';
 import { Observable } from 'rxjs';
+import { Alert } from "../../reusableComponents/alert/alert";
+import { MyButton } from "../../reusableComponents/my-button/my-button";
 
 // Using Default Form Example in this component
 @Component({
   selector: 'app-client',
-  imports: [FormsModule, DatePipe, JsonPipe, AsyncPipe],
+  imports: [FormsModule, DatePipe, JsonPipe, AsyncPipe, Alert, MyButton],
   templateUrl: './client.component.html',
   styleUrl: './client.component.css',
 })
@@ -44,8 +46,9 @@ export class ClientComponent implements OnInit {
     async pipe is used to to automatically subscribe and unwrap the observable. So there is not much code in the ts file. Like userList$ is this file
   */
 
-  onSaveClient() {
+  onSaveClient(data: string) {
     // debugger; // This will pause the execution in the browser's developer tools, allowing you to inspect the current state of the application.
+    console.log(data)
     this.clientService
       .addOrUpdateClient(this.clientObj)
       .subscribe((res: APIResponseModel) => {

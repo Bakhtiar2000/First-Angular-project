@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -8,15 +8,17 @@ import {
 import { ClientService } from '../../services/client';
 import {
   APIResponseModel,
+  ClientProject,
   Employee,
 } from '../../model/interface/role.interface';
 import { Client } from '../../model/class/client';
-import { UpperCasePipe } from '@angular/common';
+import { DatePipe, UpperCasePipe } from '@angular/common';
+import { Alert } from "../../reusableComponents/alert/alert";
 
 // Using Default Reactive Form Example in this component
 @Component({
   selector: 'app-client-project',
-  imports: [ReactiveFormsModule, UpperCasePipe], // You need to import pipe before using it
+  imports: [ReactiveFormsModule, UpperCasePipe, DatePipe, Alert], // You need to import pipe before using it
   templateUrl: './client-project.html',
   styleUrl: './client-project.css',
 })
@@ -46,9 +48,16 @@ export class ClientProjectComponent implements OnInit {
   employeeList: Employee[] = [];
   clientList: Client[] = [];
 
+  firstName = signal('Angular 18'); // Just like useState in react
+  projectList = signal<ClientProject[]>([])
   ngOnInit(): void {
+    const name = this.firstName();
     this.getAllClient();
     this.getAllEmployee();
+    this.getAllClientProject()
+  }
+  changeName() {
+    this.firstName.set('React JS');
   }
   onSaveProject() {
     const formValue = this.projectForm.value;
@@ -64,6 +73,11 @@ export class ClientProjectComponent implements OnInit {
   getAllEmployee() {
     this.client.getAllEmployees().subscribe((res: APIResponseModel) => {
       this.employeeList = res.data;
+    });
+  }
+  getAllClientProject() {
+    this.client.getAllClientProjects().subscribe((res: APIResponseModel) => {
+      this.projectList.set(res.data)
     });
   }
   getAllClient() {

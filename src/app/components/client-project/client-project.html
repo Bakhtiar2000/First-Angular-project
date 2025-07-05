@@ -1,7 +1,17 @@
+<app-alert
+  [alertType]="'Error!'"
+  message="'Welcome to Project Page!'"
+></app-alert>
 <div class="row">
   <div class="col-8">
     <div class="card">
-      <div class="card-header bg-success">Client Project List</div>
+      <div class="card-header bg-success">
+        <!-- Signal is invoked as a function using () -->
+        Client Project List - {{firstName()}}
+        <button class="btn btn-danger" (click)="changeName()">
+          Change name
+        </button>
+      </div>
       <div class="card-body">
         <div class="row">
           <div class="col-12">
@@ -16,29 +26,19 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- @for (item of clientList; track $index) {
+                @for (item of projectList(); track $index) {
                 <tr>
                   <td>{{ $index + 1 }}</td>
-                  <td>{{ item.companyName }}</td>
-                  <td>{{ item.contactPersonName }}</td>
-                  <td>{{ item.contactNo }}</td>
-                  <td>{{ item.city }}</td>
+                  <td>{{ item.clientName }}</td>
+                  <td>{{ item.projectName }}</td>
+                  <td>{{ item.empName }}</td>
+                  <td>{{ item.startDate | date: 'dd MMM, yyyy' }}</td>
                   <td>
-                    <button
-                      class="btn btn-primary"
-                      (click)="onEditClient(item)"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      class="btn btn-danger"
-                      (click)="onDeleteClient(item.clientId)"
-                    >
-                      Delete
-                    </button>
+                    <button class="btn btn-primary">Edit</button>
+                    <button class="btn btn-danger">Delete</button>
                   </td>
                 </tr>
-                } -->
+                }
               </tbody>
             </table>
           </div>

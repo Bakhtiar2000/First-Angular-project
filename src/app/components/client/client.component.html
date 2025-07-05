@@ -8,6 +8,10 @@
       <li>{{ item.username }}</li>
       }
     </ul>
+    <app-alert
+      [alertType]="'Success!'"
+      [message]="'Hi From Client Page'"
+    ></app-alert>
     <div class="card">
       <div class="card-header bg-success">
         Client List - {{ currentDate | date : "dd MMM, yyyy" }}
@@ -182,11 +186,18 @@
           <div class="col-6">
             <button class="btn btn-secondary">Reset</button>
           </div>
-          <div class="col-6">
+          <app-my-button
+            [btnClass]="'col-6 btn btn-success'"
+            [btnText]="
+              clientObj.clientId != 0 ? 'Update Client' : 'Save Client'
+            "
+            (onBtnClicked)="onSaveClient($event)"
+          ></app-my-button>
+          <!-- <div class="col-6">
             <button class="btn btn-success" (click)="onSaveClient()">
               {{ clientObj.clientId != 0 ? "Update Client" : "Save Client" }}
             </button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

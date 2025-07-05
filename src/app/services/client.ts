@@ -210,6 +210,11 @@ export class ClientService {
   //   return this.http.get<APIResponseModel>(`${environment.API_URL}/${Constant.API_METHOD.GET_ALL_CLIENT}`);
   // }
 
+  getAllClientProjects(): Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>(
+      environment.API_URL + Constant.API_METHOD.GET_ALL_CLIENT_PROJECTS
+    );
+  }
   getAllUsers() {
     return this.http.get('https://jsonplaceholder.typicode.com/users');
   }
